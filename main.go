@@ -9,7 +9,6 @@ import (
 	"github.com/pcpratheesh/rabbitmq-go-eda-tutorial/cmd/consumer"
 	"github.com/pcpratheesh/rabbitmq-go-eda-tutorial/cmd/producer"
 	"github.com/pcpratheesh/rabbitmq-go-eda-tutorial/models"
-	"github.com/r3labs/sse"
 )
 
 //go:embed assets/* templates/*
@@ -28,9 +27,6 @@ func main() {
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.tpl", nil)
 	})
-
-	server := sse.New()
-	defer server.Close()
 
 	router.GET("/event", func(ctx *gin.Context) {
 		consumer.CloseAllConsumers()
